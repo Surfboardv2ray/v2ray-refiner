@@ -1,5 +1,7 @@
 # Usage
-* Access your configs by handling websocket requests via Cloudflare.
+* Access your configs by handling websocket requests via Cloudflare..
+* Create a Vmess/Vless/Trojan config on WS network, TLS Security (Cloudflare-registered domain recommended, proxy on) and port 443.
+* Follow the Deployment instructions.
 
 # Deployment
 * Sign up or login at https://dash.cloudflare.com/
