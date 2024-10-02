@@ -9,4 +9,4 @@
 * Copy the content of [worker.js](./worker.js) from this repository file, paste onto your Cloudflare worker and hit `Deploy`.
 
 # Acknowledgements
-* The main idea and Handling Websockets code snippet credits to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
+* Handling Websockets code snippet credits and the idea of Eewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
