@@ -30,7 +30,7 @@ async function handleRequest() {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Config Refiner</title>
+    <title>Non-TLS Config Refiner</title>
     <style>
       body {
         font-family: Arial, sans-serif;
