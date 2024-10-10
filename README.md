@@ -13,7 +13,7 @@ Access your configs by handling websocket requests via Cloudflare.
 ## Introduction
 🟢 In an environment where direct connection to v2ray configs is not available, this alternative way can route the traffic to the destination server via Cloudflare.
 
-## Presequites
+## Prerequisites
 1. Login or Signup at https://dash.cloudflare.com and verify your email address.
 2. Head to `Workers and Pages` to create and name a worker.
 3. Click `Edit Code` code to enter the editing environment.
