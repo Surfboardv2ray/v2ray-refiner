@@ -1,9 +1,9 @@
 <h1 align="center">
-  V2ray Refiner
+  بازنویسی کانفیگ های v2ray
 </h1>
 
 <h2 align="center">
-Access your configs by handling websocket requests via Cloudflare.
+دسترسی به کانفیگ های v2ray سرور شخصی با استفاده از وب سوکت‌ها
   <h3>
     <a href="README.md">English 🇬🇧</a> | 🇮🇷 فارسی
   </h3> 
