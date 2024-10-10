@@ -92,7 +92,7 @@ async function handleRequest() {
   </head>
   <body>
     <div class="container">
-      <h1>Refine Your Config</h1>
+      <h1>Non-TLS Config Refiner</h1>
       <form id="config-form">
         <label for="config">Config (vless, vmess, or trojan):</label>
         <textarea id="config" rows="4"></textarea>
