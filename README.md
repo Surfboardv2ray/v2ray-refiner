@@ -19,6 +19,11 @@ Access your configs by handling websocket requests via Cloudflare.
 3. Click `Edit Code` code to enter the editing environment.
 
 ## TLS Version (Cloudflare-registered domain with PROXY switched to ON)
+
+<p align="center">
+  <img src="assets/tls.jpg" alt="html.jpg" width="400"/>
+</p>
+
 🟡 This method only works if your v2ray panel has a domain registered on Cloudflare with a TLS certificate, and Cloudflare proxy status switch to ON. 
 
 🟡 In your VPS v2ray panel, create a config with these specifications:
@@ -33,6 +38,11 @@ Access your configs by handling websocket requests via Cloudflare.
 🟡 Open the deployed version of the worker and enter the TLS config you created on your VPS, and hit `Refine`.
 
 ## Non-TLS Version (No Cloudflare-registered domains, or domain with no TLS Certification)
+
+<p align="center">
+  <img src="assets/non-tls.jpg" alt="html.jpg" width="400"/>
+</p>
+
 🟠 This method only works if your v2ray panel is not bound to a Cloudflare-registered domain, or the domain doesn't have a TLS Certificate. 
 
 🟠 First create a hostname with Type A poiting to your server IPv4 address, in any free DNS websites like https://noip.com/
