@@ -49,10 +49,10 @@ Access your configs by handling websocket requests via Cloudflare.
 🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine`.
 
 ## Editing the Non-TLS Script
-🟠 The default port is 80 `url.port = 80`. If your VPS config uses another port, edit the port in the script accordingly.
+🟢 The default port is 80 `url.port = 80`. If your VPS config uses another port, edit the port in the script accordingly.
 
 ## Additional Notes
-🟡 You could get Clean IPs via [IRCF Space Repo](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json), but it's recommended to use [Scanners](https://ircf.space/scanner.html).
+🟢 You could get Clean IPs via [IRCF Space Repo](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json), but it's recommended to use [Scanners](https://ircf.space/scanner.html).
 
 ## Acknowledgements
 * Handling Websockets code snippet credits and the idea of Rewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
