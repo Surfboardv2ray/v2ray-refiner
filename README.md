@@ -33,7 +33,7 @@ Access your configs by handling websocket requests via Cloudflare.
 * Host: Cloudflare-registered TLS-Certified Domain/Subdomain
 * Port: 443
 
-🟡 Get the latest version of the TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+🟡 Get the latest version of the [TLS V2ray Refiner Worker Script](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/_worker.js), copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
 
 🟡 Open the deployed version of the worker and enter the TLS config you created on your VPS, and hit `Refine`.
 
@@ -56,7 +56,7 @@ Access your configs by handling websocket requests via Cloudflare.
 * Host: Hostname pointing to your server's IP Address (If on Cloudflare, switch the PROXY to OFF)
 * Port: 80
 
-🟠 Get the latest version of the Non-TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+🟠 Get the latest version of the [Non-TLS V2ray Refiner Worker Script](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/_worker.js), copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
 
 🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine Config`.
 
