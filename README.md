@@ -42,7 +42,7 @@ Access your configs by handling websocket requests via Cloudflare.
 ## Non-TLS Version (No Cloudflare-registered domains, or domain with no TLS Certification)
 
 <p align="center">
-  <img src="assets/non-tls.jpg" alt="html.jpg" width="400"/>
+  <img src="assets/non-tls.jpg" alt="html.jpg" width="600"/>
 </p>
 
 🟠 This method only works if your v2ray panel is not bound to a Cloudflare-registered domain, or the domain doesn't have a TLS Certificate. 
@@ -58,7 +58,7 @@ Access your configs by handling websocket requests via Cloudflare.
 
 🟠 Get the latest version of the Non-TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
 
-🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine`.
+🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine Config`.
 
 ## Editing the Non-TLS Script
 🟢 The default port is 80 `url.port = 80`. If your VPS config uses another port, edit the port in the script accordingly.
@@ -66,6 +66,8 @@ Access your configs by handling websocket requests via Cloudflare.
 ## Additional Notes
 🟢 You could get Clean IPs via [IRCF Space Repo](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json), but it's recommended to use [Scanners](https://ircf.space/scanner.html).
 
+![0](./assets/redline.gif)
+
 ## Acknowledgements
-* Handling Websockets code snippet credits and the idea of Rewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
-* Handling Non-TLS configs code snippet tribute to [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
+* Handling Websockets snippet and the idea of Rewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
+* Handling Non-TLS configs snippet tribute to [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
