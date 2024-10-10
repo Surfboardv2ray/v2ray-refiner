@@ -1,5 +1,5 @@
 <h1 align="center">
-  بازنویسی کانفیگ های v2ray
+  بازنویسی کانفیگ های V2ray
 </h1>
 
 <h2 align="center">
