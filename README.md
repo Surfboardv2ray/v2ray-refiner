@@ -1,17 +1,3 @@
-# Usage
-* Access your configs by handling websocket requests via Cloudflare..
-* Create a Vmess/Vless/Trojan config on WS network, TLS Security (Cloudflare-registered domain recommended, proxy on) and port 443.
-* Follow the Deployment instructions.
-
-# Deployment
-* Sign up or login at https://dash.cloudflare.com/
-* Create a new Cloudflare Worker, `Edit Code` and clear the content.
-* Copy the content of [worker.js](./worker.js) from this repository file, paste onto your Cloudflare worker and hit `Deploy`.
-
-# Acknowledgements
-* Handling Websockets code snippet credits and the idea of Rewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
-* Handling Non-TLS configs code snippet tribute to [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
-
 <h1 align="center">
   V2ray Refiner
 </h1>
@@ -67,3 +53,7 @@ Access your configs by handling websocket requests via Cloudflare.
 
 ## Additional Notes
 🟡 You could get Clean IPs via [IRCF Space Repo](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json), but it's recommended to use [Scanners](https://ircf.space/scanner.html).
+
+# Acknowledgements
+* Handling Websockets code snippet credits and the idea of Rewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
+* Handling Non-TLS configs code snippet tribute to [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
