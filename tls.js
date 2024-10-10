@@ -64,7 +64,7 @@ function renderHTML() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proxy Config Refiner</title>
+  <title>TLS Config Refiner</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
@@ -76,7 +76,7 @@ function renderHTML() {
   </style>
 </head>
 <body>
-  <h2>Proxy Config Refiner</h2>
+  <h2>TLS Config Refiner</h2>
   <label for="config">Enter your proxy config (Vmess, Vless, Trojan):</label>
   <textarea id="config" placeholder="vmess://..."></textarea>
   
