@@ -256,21 +256,21 @@ function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
 
   // Construct the refined config
   const refinedConfig = {
-    v: "2", // Fixed value as per your specifications
+    v: "2", 
     ps: jsonConfig.ps, 
     add: cleanIp, // Use Clean IP provided by the user
-    port: "443", // Set the port to 443 as per your request
+    port: "443", 
     id: jsonConfig.id,
-    aid: "0", // Static value
-    scy: "auto", // Static value
-    net: "ws", // Static value
-    type: "none", // Static value
+    aid: "0", 
+    scy: "auto", 
+    net: "ws", 
+    type: "none", 
     host: workerUrl, // Set host to the Worker URL
     path: `/${hostname}${jsonConfig.path || ''}`, // Ensure path is appended correctly
-    tls: "tls", // Static value
+    tls: "tls", 
     sni: workerUrl, // Set SNI to the Worker URL
-    alpn: "h2,http/1.1", // Static value
-    fp: "chrome" // Static value
+    alpn: "h2,http/1.1", 
+    fp: "chrome" 
   };
 
   console.log("Refined config object:", refinedConfig);
