@@ -1,3 +1,6 @@
+// Developed by Surfboardv2ray
+// https://github.com/Surfboardv2ray/v2ray-refiner
+
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request));
 });
