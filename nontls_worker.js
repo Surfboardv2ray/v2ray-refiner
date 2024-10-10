@@ -100,7 +100,7 @@ async function handleRequest() {
         <label for="hostname">Hostname pointing to Server IP:</label>
         <input type="text" id="hostname">
 
-        <label for="clean-ip">Clean IP (Default: 162.159.141.134):</label>
+        <label for="clean-ip">Clean IP:</label>
         <input type="text" id="clean-ip" value="162.159.141.134">
 
         <button type="submit">Refine Config</button>
