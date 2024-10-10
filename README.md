@@ -21,7 +21,7 @@ Access your configs by handling websocket requests via Cloudflare.
 ## TLS Version (Cloudflare-registered domain with PROXY switched to ON)
 
 <p align="center">
-  <img src="assets/tls.jpg" alt="html.jpg" width="400"/>
+  <img src="assets/tls.jpg" alt="html.jpg" width="600"/>
 </p>
 
 🟡 This method only works if your v2ray panel has a domain registered on Cloudflare with a TLS certificate, and Cloudflare proxy status switch to ON. 
@@ -36,6 +36,8 @@ Access your configs by handling websocket requests via Cloudflare.
 🟡 Get the latest version of the TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
 
 🟡 Open the deployed version of the worker and enter the TLS config you created on your VPS, and hit `Refine`.
+
+![0](./assets/redline.gif)
 
 ## Non-TLS Version (No Cloudflare-registered domains, or domain with no TLS Certification)
 
