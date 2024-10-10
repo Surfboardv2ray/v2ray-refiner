@@ -60,6 +60,8 @@ Access your configs by handling websocket requests via Cloudflare.
 
 🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine Config`.
 
+![0](./assets/redline.gif)
+
 ## Editing the Non-TLS Script
 🟢 The default port is 80 `url.port = 80`. If your VPS config uses another port, edit the port in the script accordingly.
 
