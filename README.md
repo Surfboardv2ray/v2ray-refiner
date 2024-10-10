@@ -34,25 +34,32 @@ Access your configs by handling websocket requests via Cloudflare.
 
 ## TLS Version (Cloudflare-registered domain with PROXY switched to ON)
 🟡 This method only works if your v2ray panel has a domain registered on Cloudflare with a TLS certificate, and Cloudflare proxy status switch to ON. 
+
 🟡 In your VPS v2ray panel, create a config with these specifications:
 * Type: Vmess, Vless or Trojan
 * Transporation: Websocket (WS)
 * Security: TLS
 * Host: Cloudflare-registered TLS-Certified Domain/Subdomain
 * Port: 443
+
 🟡 Get the latest version of the TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+
 🟡 Open the deployed version of the worker and enter the TLS config you created on your VPS, and hit `Refine`.
 
 ## Non-TLS Version (No Cloudflare-registered domains, or domain with no TLS Certification)
 🟠 This method only works if your v2ray panel is not bound to a Cloudflare-registered domain, or the domain doesn't have a TLS Certificate. 
+
 🟠 First create a hostname with Type A poiting to your server IPv4 address, in any free DNS websites like https://noip.com/
+
 🟠 In your VPS v2ray panel, create a config with these specifications:
 * Type: Vmess, Vless or Trojan
 * Transporation: Websocket (WS)
 * Security: None
 * Host: Hostname pointing to your server's IP Address (If on Cloudflare, switch the PROXY to OFF)
 * Port: 80
+
 🟠 Get the latest version of the Non-TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+
 🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine`.
 
 ## Editing the Non-TLS Script
