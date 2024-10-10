@@ -47,7 +47,7 @@ Access your configs by handling websocket requests via Cloudflare.
 
 🟠 This method only works if your v2ray panel is not bound to a Cloudflare-registered domain, or the domain doesn't have a TLS Certificate. 
 
-🟠 First create a hostname with Type A poiting to your server IPv4 address, in any free DNS websites like https://noip.com/
+🟠 First create a hostname with Type A pointing to your server IPv4 address, in any free DNS websites like https://noip.com/
 
 🟠 In your VPS v2ray panel, create a config with these specifications:
 * Type: Vmess, Vless or Trojan
