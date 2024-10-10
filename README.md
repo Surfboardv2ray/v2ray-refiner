@@ -54,6 +54,6 @@ Access your configs by handling websocket requests via Cloudflare.
 ## Additional Notes
 🟡 You could get Clean IPs via [IRCF Space Repo](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json), but it's recommended to use [Scanners](https://ircf.space/scanner.html).
 
-# Acknowledgements
+## Acknowledgements
 * Handling Websockets code snippet credits and the idea of Rewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
 * Handling Non-TLS configs code snippet tribute to [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
