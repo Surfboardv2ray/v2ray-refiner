@@ -10,64 +10,63 @@ Access your configs by handling websocket requests via Cloudflare.
 </h2>
 
 
-## Introduction
-🟢 In an environment where direct connection to v2ray configs is not available, this alternative way can route the traffic to the destination server via Cloudflare.
+## معرفی
+🟢 زمانی که اتصال مستقیم به کانفیگ‌های v2ray در دسترس نیست، این روش جایگزین می‌تواند ترافیک را از طریق Cloudflare به سرور مقصد هدایت کند.
 
-## Presequites
-1. Login or Signup at https://dash.cloudflare.com and verify your email address.
-2. Head to `Workers and Pages` to create and name a worker.
-3. Click `Edit Code` code to enter the editing environment.
+## پیش نیازها
+1.  در سایت https://dash.cloudflare.com لاگین یا ثبت نام کنید و آدرس ایمیل خود را تأیید کنید.
+2. به بخش Workers and Pages رفته و یک ورکر جدید ایجاد کنید.
+3. برای ورود به محیط ویرایش ورکر، Edit Code رو بزنید.
 
-## TLS Version (Cloudflare-registered domain with PROXY switched to ON)
+## نسخه TLS (دامنه ثبت شده در کلاودفلیر با پروکسی روشن)
 
 <p align="center">
   <img src="assets/tls.jpg" alt="html.jpg" width="600"/>
 </p>
 
-🟡 This method only works if your v2ray panel has a domain registered on Cloudflare with a TLS certificate, and Cloudflare proxy status switch to ON. 
+🟡 این روش فقط در صورتی کار می کند که پنل v2ray شما دارای یک دامنه ثبت شده در Cloudflare با گواهی TLS باشد و وضعیت پروکسی Cloudflare روی ON باشد.
 
-🟡 In your VPS v2ray panel, create a config with these specifications:
-* Type: Vmess, Vless or Trojan
-* Transporation: Websocket (WS)
-* Security: TLS
-* Host: Cloudflare-registered TLS-Certified Domain/Subdomain
-* Port: 443
+🟡 در پنل v2ray خود، یک کانفیگ با مشخصات زیر بسازید:
+* نوع: Vmess, Vless or Trojan
+* ترنسپورت (شبکه): Websocket (WS)
+* امنیت: TLS
+* هاست: دامنه ای که روی کلاودفلیر ثبت کردید (گواهی TLS داشته و پروکسی کلاودفلیر روشن باشد)
+* پورت: 443
 
-🟡 Get the latest version of the TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+🟡 آخرین نسخه اسکریپت بازنویسی کانفیگ TLS رو دریافت کنید، کل محتوا را در ورکر خود کپی و جایگذاری/آپلود کنید و روی deploy کلیک کنید.
 
-🟡 Open the deployed version of the worker and enter the TLS config you created on your VPS, and hit `Refine`.
-
+🟡 لینک ورکر رو باز کنید، کانفیگ و آیپی تمیز کلاودفلیر خودتون رو وارد کنید و `Refine` رو بزنید تا بازنویسی انجام بشه.
 ![0](./assets/redline.gif)
 
-## Non-TLS Version (No Cloudflare-registered domains, or domain with no TLS Certification)
+## نسخه بدون TLS (دامنه در کلاودفلیر ثبت نشده، یا دامنه بدون سرتیفیکیت
 
 <p align="center">
   <img src="assets/non-tls.jpg" alt="html.jpg" width="600"/>
 </p>
 
-🟠 This method only works if your v2ray panel is not bound to a Cloudflare-registered domain, or the domain doesn't have a TLS Certificate. 
+🟠 در صورتی از این روش استفاده کنید که دامنه ندارید یا دامنه شما در کلاودفلیر ثبت نشده، یا گواهی TLS برای آن نگرفته اید.
+🟠 یک Hostname از نوع A در سایت‌های رایگانی مثل https://noip.com بسازید و IPv4 سرور خود را به آن وصل کنید.
 
-🟠 First create a hostname with Type A poiting to your server IPv4 address, in any free DNS websites like https://noip.com/
 
-🟠 In your VPS v2ray panel, create a config with these specifications:
-* Type: Vmess, Vless or Trojan
-* Transporation: Websocket (WS)
-* Security: None
-* Host: Hostname pointing to your server's IP Address (If on Cloudflare, switch the PROXY to OFF)
-* Port: 80
+🟠 در پنل v2ray خود، یک کانفیگ با مشخصات زیر بسازید:
+* نوع: Vmess, Vless or Trojan
+* ترنسپورت (شبکه): Websocket (WS)
+* امنیت: None (خاموش)
+* هاست: دامنه یا ساب دامنه رایگانی که ساختید
+* پورت: 80
+🟠 آخرین نسخه اسکریپت بازنویسی کانفیگ Non-TLS رو دریافت کنید، کل محتوا را در ورکر خود کپی و جایگذاری/آپلود کنید و روی deploy کلیک کنید.
 
-🟠 Get the latest version of the Non-TLS V2ray Refiner Worker Script, copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+🟠 لینک ورکر رو باز کنید، کانفیگ، آیپی تمیز کلاودفلیر، و دامنه رایگانی که ساختید رو وارد کنید و `Refine Config` رو بزنید تا بازنویسی انجام بشه.
 
-🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine Config`.
 
-## Editing the Non-TLS Script
-🟢 The default port is 80 `url.port = 80`. If your VPS config uses another port, edit the port in the script accordingly.
+## ویرایش اسکریپت Non-TLS
+🟢 پورت پیش فرض کانفیگ ها در این نسخه 80 است `url.port = 80` اگر کانفیگ شما از پورت دیگری استفاده میکند در این بخش میتونید تغییر بدید.
 
-## Additional Notes
-🟢 You could get Clean IPs via [IRCF Space Repo](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json), but it's recommended to use [Scanners](https://ircf.space/scanner.html).
+## سایر نکات
+🟢 آیپی های تمیز رو از [مخزن IRCF](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json) میتونید دریافت کنید، اما توصیه میشه از [اسکنرها](https://ircf.space/scanner.html) استفاده کنید.
 
 ![0](./assets/redline.gif)
 
-## Acknowledgements
-* Handling Websockets snippet and the idea of Rewriting Configs UI tribute to Vfarid's [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
-* Handling Non-TLS configs snippet tribute to [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
+## تقدیر و تشکر
+* ایده بازنویسی کانفیگ‌ها و بخش پایه کد بازنویسی TLS با تشکر از مهندس وحید فرید [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
+* ایده و کد بازنویسی کانفیگ های Non-TLS تشکر از وبلاگ فرینود [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
