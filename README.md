@@ -18,6 +18,8 @@ Access your configs by handling websocket requests via Cloudflare.
 2. Head to `Workers and Pages` to create and name a worker.
 3. Click `Edit Code` code to enter the editing environment.
 
+![0](./assets/redline.gif)
+
 ## TLS Version (Cloudflare-registered domain with PROXY switched to ON)
 
 <p align="center">
