@@ -20,10 +20,6 @@
 ![0](./assets/redline.gif)
 ## نسخه TLS (دامنه ثبت شده در کلاودفلیر با پروکسی روشن)
 
-<p align="center">
-  <img src="assets/tls.jpg" alt="html.jpg" width="600"/>
-</p>
-
 🟡 این روش فقط در صورتی کار می کند که پنل v2ray شما دارای یک دامنه ثبت شده در Cloudflare با گواهی TLS باشد و وضعیت پروکسی Cloudflare روی ON باشد.
 
 🟡 در پنل v2ray خود، یک کانفیگ با مشخصات زیر بسازید:
@@ -36,13 +32,13 @@
 🟡 آخرین نسخه [اسکریپت بازنویسی کانفیگ TLS](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/_worker.js) رو دریافت کنید، کل محتوا را در ورکر خود کپی و جایگذاری/آپلود کنید و روی deploy کلیک کنید.
 
 🟡 لینک ورکر رو باز کنید، کانفیگ و آیپی تمیز کلاودفلیر خودتون رو وارد کنید و `Refine` رو بزنید تا بازنویسی انجام بشه.
+<p align="center">
+  <img src="assets/tls.jpg" alt="html.jpg" width="600"/>
+</p>
+
 ![0](./assets/redline.gif)
 
 ## نسخه بدون TLS (دامنه در کلاودفلیر ثبت نشده، یا دامنه بدون سرتیفیکیت)
-
-<p align="center">
-  <img src="assets/non-tls.jpg" alt="html.jpg" width="600"/>
-</p>
 
 🟠 در صورتی از این روش استفاده کنید که دامنه ندارید یا دامنه شما در کلاودفلیر ثبت نشده، یا گواهی TLS برای آن نگرفته اید.
 
@@ -59,6 +55,9 @@
 🟠 آخرین نسخه [اسکریپت بازنویسی کانفیگ Non-TLS](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/worker.js) رو دریافت کنید، کل محتوا را در ورکر خود کپی و جایگذاری/آپلود کنید و روی deploy کلیک کنید.
 
 🟠 لینک ورکر رو باز کنید، کانفیگ، آیپی تمیز کلاودفلیر، و دامنه رایگانی که ساختید رو وارد کنید و `Refine Config` رو بزنید تا بازنویسی انجام بشه.
+<p align="center">
+  <img src="assets/non-tls.jpg" alt="html.jpg" width="600"/>
+</p>
 
 ![0](./assets/redline.gif)
 ## ویرایش اسکریپت Non-TLS
@@ -74,5 +73,5 @@
 ![0](./assets/redline.gif)
 
 ## تقدیر و تشکر
-* ایده بازنویسی کانفیگ‌ها و بخش پایه کد بازنویسی TLS با تشکر از مهندس وحید فرید [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
-* ایده و کد بازنویسی کانفیگ های Non-TLS تشکر از وبلاگ فرینود [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
+* ایده بازنویسی کانفیگ‌ها و بخش پایه (فوروارد ترافیک) بازنویسی TLS با تشکر از مهندس وحید فرید [v2ray-worker-merge](https://github.com/vfarid/v2ray-worker-merge/tree/main).
+* ایده و بخش پایه (فوروارد ترافیک) بازنویسی کانفیگ های Non-TLS تشکر از وبلاگ فرینود [GetAFreeNode](https://getafreenode.com/blog/index.php/tutorial/31.html).
