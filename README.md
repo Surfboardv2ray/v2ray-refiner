@@ -9,6 +9,10 @@ Access your configs by handling websocket requests via Cloudflare.
   </h3> 
 </h2>
 
+[![Version](https://img.shields.io/github/v/release/surfboardv2ray/v2ray-refiner?label=Version&color=blue)](https://github.com/surfboardv2ray/v2ray-refiner/releases/latest)
+[![Download](https://img.shields.io/github/downloads/surfboardv2ray/v2ray-refiner/total?label=Downloads)](https://github.com/surfboardv2ray/v2ray-refiner/releases/latest)
+[![Stars](https://img.shields.io/github/stars/surfboardv2ray/v2ray-refiner?style=flat&label=Stars&color=tomato
+)](https://github.com/surfboardv2ray/v2ray-refiner)
 
 ## Introduction
 🟢 In an environment where direct connection to v2ray configs is not available, this alternative way can route the traffic to the destination server via Cloudflare.
@@ -35,7 +39,7 @@ Access your configs by handling websocket requests via Cloudflare.
 * Host: Cloudflare-registered TLS-Certified Domain/Subdomain
 * Port: 443
 
-🟡 Get the latest version of the [TLS V2ray Refiner Worker Script](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/_worker.js), copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+🟡 Get the latest version of the [TLS V2ray Refiner Worker Script](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/_worker.js), copy and paste/upload the entire content to your Cloudflare worker and hit deploy. (Alternatively, you could copy the worker script from [here](./tls_worker.js))
 
 🟡 Open the deployed version of the worker and enter the TLS config you created on your VPS, and hit `Refine`.
 
@@ -58,7 +62,7 @@ Access your configs by handling websocket requests via Cloudflare.
 * Host: Hostname pointing to your server's IP Address (If on Cloudflare, switch the PROXY to OFF)
 * Port: 80
 
-🟠 Get the latest version of the [Non-TLS V2ray Refiner Worker Script](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/_worker.js), copy and paste/upload the entire content to your Cloudflare worker and hit deploy.
+🟠 Get the latest version of the [Non-TLS V2ray Refiner Worker Script](https://github.com/Surfboardv2ray/v2ray-refiner/releases/latest/download/_worker.js), copy and paste/upload the entire content to your Cloudflare worker and hit deploy. (Alternatively, you could copy the worker script from [here](./nontls_worker.js))
 
 🟠 Open the deployed version of the worker and enter the Non-TLS config you created on your VPS. Set the hostname to the one you created in step 2. Enter a clean Cloudflare IP address that works on your network, and finally, hit `Refine Config`.
 
