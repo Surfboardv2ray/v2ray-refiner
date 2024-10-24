@@ -71,6 +71,9 @@ Access your configs by handling websocket requests via Cloudflare.
 ## Editing the Non-TLS Script
 🟢 The default port is 80. If your VPS config uses another port, edit the port in the script over at  `const workerPort = 80` and `url.port = 80` accordingly (You need to edit both).
 
+## Editing the TLS Script
+🟢 Allowed ports are those of Cloudflare TLS (443, 8443, 2053, 2083, 2087, 2096), changeable under `const allowedPorts`.
+
 ## Additional Notes
 🟢 You could get Clean IPs via [IRCF Space Repo](https://github.com/ircfspace/cf2dns/blob/master/list/ipv4.json), but it's recommended to use [Scanners](https://ircf.space/scanner.html).
 
