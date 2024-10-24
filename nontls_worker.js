@@ -1,6 +1,6 @@
 // Developed by Surfboardv2ray
 // https://github.com/Surfboardv2ray/v2ray-refiner
-// Change url.port if your config uses another port. Only one port will work at a time.
+// Change 'url.port' and 'const workerport' value if your config uses another port. Only one port will work at a time.
 
 addEventListener("fetch", event => {
   let url = new URL(event.request.url);
