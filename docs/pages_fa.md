@@ -10,5 +10,5 @@
 
 
 <p align="center">
-  <img src="assets/Cloudflare_pages.jpg" alt="html.jpg" width="600"/>
+  <img src="cf_pages.jpg" alt="html.jpg" width="600"/>
 </p>
