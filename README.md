@@ -9,7 +9,6 @@ Access your configs by handling websocket requests via Cloudflare.
   </h3> 
 </h2>
 
-> [!TIP]
 > * [YouTube Instructions](https://www.youtube.com/watch?v=3Z6h6clnqC4)
 > * New Update!! [Deploy to Cloudflare Pages](./docs/pages_en.md)
 
