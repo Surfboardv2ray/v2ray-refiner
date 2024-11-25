@@ -1,27 +1,33 @@
 // Developed by Surfboardv2ray
 // https://github.com/Surfboardv2ray/v2ray-refiner
+// Version 1.2
 // Change 'url.port' and 'const workerport' value if your config uses another port. Only one port will work at a time.
 
-addEventListener("fetch", event => {
-  let url = new URL(event.request.url);
-  if (url.pathname === '/' && event.request.method === "GET") {
-    // Serve the HTML page at the root URL for GET request
-    return event.respondWith(handleRequest());
-  } else if (url.pathname === '/' && event.request.method === "POST") {
-    // Handle POST request to process the config refinement
-    return event.respondWith(handleConfigRefinement(event.request));
-  } else {
-    // Proceed with the existing fetch logic for other paths
-    let realhostname = url.pathname.split('/')[1];
-    let realpathname = url.pathname.split('/')[2];
-    url.hostname = realhostname;
-    url.pathname = '/' + realpathname;
-    url.port = 80;
-    url.protocol = 'http';
-    let request = new Request(url, event.request);
-    event.respondWith(fetch(request));
+export default {
+  async fetch(request) {
+    let url = new URL(request.url);
+    
+    if (url.pathname === '/' && request.method === "GET") {
+      // Serve the HTML page at the root URL for GET request
+      return handleRequest();
+    } else if (url.pathname === '/' && request.method === "POST") {
+      // Handle POST request to process the config refinement
+      return handleConfigRefinement(request);
+    } else {
+      // Proceed with the existing fetch logic for other paths
+      let realhostname = url.pathname.split('/')[1];
+      let realpathname = url.pathname.split('/')[2];
+      url.hostname = realhostname;
+      url.pathname = '/' + realpathname;
+      url.port = 80;
+      url.protocol = 'http';
+      let newRequest = new Request(url, request);
+      return fetch(newRequest);
+    }
   }
-});
+};
+
+
 
 async function handleRequest() {
   const html = `
@@ -32,61 +38,136 @@ async function handleRequest() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Non-TLS Config Refiner</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      /* General Reset */
+      * {
         margin: 0;
-        padding: 20px;
-        background-color: #f5f5f5;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-      h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-      }
-      label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      input[type="text"], textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+        padding: 0;
         box-sizing: border-box;
       }
+  
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #fff, #f4f4f4);
+        color: #333;
+        padding: 50px 20px;
+      }
+  
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+  
+      h1 {
+        text-align: center;
+        font-size: 36px;
+        color: #FF8C00;
+        margin-bottom: 20px;
+      }
+  
+      h2 {
+        font-size: 24px;
+        color: #444;
+        margin-top: 40px;
+      }
+  
+      label {
+        font-weight: bold;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 8px;
+        color: #444;
+      }
+  
+      input[type="text"], textarea {
+        width: 100%;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 2px solid #ddd;
+        font-size: 16px;
+        transition: border 0.3s;
+        box-shadow: inset 0 1px 5px rgba(0,0,0,0.1);
+      }
+  
+      input[type="text"]:focus, textarea:focus {
+        border-color: #FF8C00;
+        outline: none;
+        box-shadow: inset 0 1px 5px rgba(255, 140, 0, 0.3);
+      }
+  
       button {
-        padding: 10px 20px;
-        background-color: #28a745;
+        width: 100%;
+        padding: 15px;
+        background-color: #FF8C00;
         color: #fff;
+        font-size: 18px;
         border: none;
-        border-radius: 4px;
+        border-radius: 10px;
         cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
+  
       button:hover {
-        background-color: #218838;
+        background-color: #e67e22;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
       }
+  
+      button:active {
+        transform: translateY(2px);
+        box-shadow: none;
+      }
+  
       .error {
         color: red;
         font-size: 14px;
         margin-bottom: 20px;
+        text-align: center;
       }
+  
       .refined-box {
         background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
         border: 1px solid #ddd;
-        padding: 10px;
         word-wrap: break-word;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
       }
+  
       .copy-icon {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 20px;
         cursor: pointer;
-        color: #007bff;
+        color: #FF8C00;
+        transition: color 0.2s ease;
+      }
+  
+      .copy-icon:hover {
+        color: #e67e22;
+      }
+  
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+  
+        h1 {
+          font-size: 28px;
+        }
+  
+        button {
+          font-size: 16px;
+        }
+  
+        input[type="text"], textarea {
+          font-size: 14px;
+        }
       }
     </style>
   </head>
@@ -95,35 +176,35 @@ async function handleRequest() {
       <h1>Non-TLS Config Refiner</h1>
       <form id="config-form">
         <label for="config">Config (vless, vmess, or trojan):</label>
-        <textarea id="config" rows="4"></textarea>
-        
+        <textarea id="config" rows="6"></textarea>
+  
         <label for="hostname">Hostname pointing to Server IP:</label>
-        <input type="text" id="hostname">
-
+        <input type="text" id="hostname" placeholder="Enter your server hostname">
+  
         <label for="clean-ip">Clean IP:</label>
-        <input type="text" id="clean-ip" value="162.159.141.134">
-
+        <input type="text" id="clean-ip" value="162.159.141.134" placeholder="Enter Cloudflare clean IP">
+  
         <button type="submit">Refine Config</button>
         <div class="error" id="error"></div>
       </form>
-
+  
       <h2>Refined Config</h2>
       <div id="refined-config" class="refined-box"></div>
       <span id="copy-btn" class="copy-icon">📋 Copy</span>
     </div>
-
+  
     <script>
       document.getElementById("config-form").addEventListener("submit", async function(event) {
         event.preventDefault();
         const config = document.getElementById("config").value;
         const hostname = document.getElementById("hostname").value;
         const cleanIp = document.getElementById("clean-ip").value;
-
+  
         const errorDiv = document.getElementById("error");
         const refinedConfigDiv = document.getElementById("refined-config");
         errorDiv.textContent = "";
         refinedConfigDiv.textContent = "";
-
+  
         // Input validation
         if (!config && !hostname) {
           errorDiv.textContent = "Please enter your Config and Hostname";
@@ -138,7 +219,7 @@ async function handleRequest() {
           errorDiv.textContent = "Please input your Cloudflare Clean IP address.";
           return;
         }
-
+  
         // Send POST request to the worker for refinement
         const response = await fetch("/", {
           method: "POST",
@@ -151,16 +232,16 @@ async function handleRequest() {
             cleanIp
           })
         });
-
+  
         const result = await response.json();
-
+  
         if (result.error) {
           errorDiv.textContent = result.error;
         } else {
           refinedConfigDiv.textContent = result.refinedConfig;
         }
       });
-
+  
       // Copy to clipboard functionality
       document.getElementById("copy-btn").addEventListener("click", () => {
         const refinedConfig = document.getElementById("refined-config").textContent;
@@ -174,7 +255,7 @@ async function handleRequest() {
       });
     </script>
   </body>
-  </html>
+  </html>  
   `;
 
   return new Response(html, {
@@ -332,4 +413,3 @@ function handleTrojanConfig(config, hostname, cleanIp, workerUrl, workerPort) {
     headers: { 'Content-Type': 'application/json' },
   });
 }
-
