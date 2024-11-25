@@ -9,7 +9,7 @@
   </h3> 
 </h2>
 
-> [!TIP]
+
 > * [ویدیو آموزشی یوتوب از V2rayirani](https://www.youtube.com/watch?v=3Z6h6clnqC4)
 > * آپدیت جدید!! [راهنمای پیاده سازی بر روی Cloudflare Pages](./docs/pages_fa.md)
 
