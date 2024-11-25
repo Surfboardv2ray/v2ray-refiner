@@ -12,15 +12,14 @@
 [ویدیو آموزشی یوتوب از V2rayirani](https://www.youtube.com/watch?v=3Z6h6clnqC4)
 
 
-> [!TIPS]
-> آپدیت جدید!! [راهنمای پیاده سازی بر روی Cloudflare Pages](./docs/pages_fa.md)
-
-
 [![Version](https://img.shields.io/github/v/release/surfboardv2ray/v2ray-refiner?label=Version&color=blue)](https://github.com/surfboardv2ray/v2ray-refiner/releases/latest)
 [![Download](https://img.shields.io/github/downloads/surfboardv2ray/v2ray-refiner/total?label=Downloads)](https://github.com/surfboardv2ray/v2ray-refiner/releases/latest)
 [![Stars](https://img.shields.io/github/stars/surfboardv2ray/v2ray-refiner?style=flat&label=Stars&color=tomato
 )](https://github.com/surfboardv2ray/v2ray-refiner)
 
+> [!TIPS]
+> آپدیت جدید!! [راهنمای پیاده سازی بر روی Cloudflare Pages](./docs/pages_fa.md)
+> 
 ## معرفی
 🟢 زمانی که اتصال مستقیم به کانفیگ‌های v2ray در دسترس نیست، این روش جایگزین می‌تواند ترافیک را از طریق Cloudflare به سرور مقصد هدایت کند.
 
