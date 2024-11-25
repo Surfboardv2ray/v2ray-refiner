@@ -1,10 +1,12 @@
 // Developed by Surfboardv2ray
 // https://github.com/Surfboardv2ray/v2ray-refiner
-// Version 1.1
+// Version 1.2
 
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request));
-});
+export default {
+  async fetch(request) {
+    return handleRequest(request);
+  }
+};
 
 async function handleRequest(request) {
   const headers = new Headers();
@@ -57,69 +59,180 @@ async function handleWebSocket(request) {
 
 function renderHTML() {
   return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TLS Config Refiner</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
-    button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
-    button:hover { background-color: #0056b3; }
-    textarea { resize: vertical; min-height: 150px; }
-    .output-box { position: relative; }
-    .copy-btn { position: absolute; right: 10px; top: 10px; background: #007bff; color: white; padding: 5px; cursor: pointer; border: none; font-size: 12px; }
-  </style>
-</head>
-<body>
-  <h2>TLS Config Refiner</h2>
-  <label for="config">Enter your proxy config (Vmess, Vless, Trojan):</label>
-  <textarea id="config" placeholder="vmess://..."></textarea>
-  
-  <label for="clean-ip">Clean IP Address (Please set your own):</label>
-  <input type="text" id="clean-ip" value="162.159.195.189">
-
-  <button id="refine-btn">Refine</button>
-  
-  <h3>Refined Config:</h3>
-  <div class="output-box">
-    <textarea id="refined-config" readonly></textarea>
-    <button class="copy-btn" id="copy-btn">Copy</button>
-  </div>
-
-  <script>
-    document.getElementById('refine-btn').addEventListener('click', async () => {
-      const config = document.getElementById('config').value.trim();
-      const cleanIp = document.getElementById('clean-ip').value.trim();
-
-      try {
-        const response = await fetch(window.location.href, {
-          method: 'POST',
-          body: new URLSearchParams({ config, cleanIp }),
-        });
-        
-        const result = await response.json();
-        if (response.ok) {
-          document.getElementById('refined-config').value = result.refinedConfig;
-        } else {
-          document.getElementById('refined-config').value = result.error;
-        }
-      } catch (error) {
-        document.getElementById('refined-config').value = 'Error: ' + error.message;
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLS Config Refiner</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        color: #333;
       }
-    });
-
-    document.getElementById('copy-btn').addEventListener('click', () => {
-      const refinedConfig = document.getElementById('refined-config');
-      refinedConfig.select();
-      document.execCommand('copy');
-      alert('Config copied to clipboard');
-    });
-  </script>
-</body>
-</html>
+  
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+  
+      h2 {
+        text-align: center;
+        color: #ff5722;
+        font-weight: bold;
+      }
+  
+      label {
+        font-size: 16px;
+        margin-top: 10px;
+        display: block;
+        font-weight: 600;
+        color: #555;
+      }
+  
+      input, textarea {
+        width: 100%;
+        padding: 6px;
+        margin: 0 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        background: #f9f9f9;
+        transition: all 0.3s;
+      }
+  
+      input:focus, textarea:focus {
+        border-color: #ff5722;
+        outline: none;
+        background: #fff;
+        box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+      }
+  
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+  
+      button {
+        padding: 12px 20px;
+        margin: 10px 0;
+        font-size: 16px;
+        color: white;
+        background: linear-gradient(145deg, #ff6b3d, #ff5722);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+  
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+      }
+  
+      button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+  
+      .output-box {
+        position: relative;
+      }
+  
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+        background: linear-gradient(145deg, #ff6b3d, #ff5722);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+  
+      .copy-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+      }
+  
+      .copy-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+  
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px;
+          padding: 15px;
+        }
+  
+        button, .copy-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>TLS Config Refiner</h2>
+      <label for="config">Enter your proxy config (Vmess, Vless, Trojan):</label>
+      <textarea id="config" placeholder="vmess://..."></textarea>
+      
+      <label for="clean-ip">Clean IP Address (Please set your own):</label>
+      <input type="text" id="clean-ip" value="162.159.195.189">
+  
+      <button id="refine-btn">Refine</button>
+      
+      <h3>Refined Config:</h3>
+      <div class="output-box">
+        <textarea id="refined-config" readonly></textarea>
+        <button class="copy-btn" id="copy-btn">Copy</button>
+      </div>
+    </div>
+  
+    <script>
+      document.getElementById('refine-btn').addEventListener('click', async () => {
+        const config = document.getElementById('config').value.trim();
+        const cleanIp = document.getElementById('clean-ip').value.trim();
+  
+        try {
+          const response = await fetch(window.location.href, {
+            method: 'POST',
+            body: new URLSearchParams({ config, cleanIp }),
+          });
+          
+          const result = await response.json();
+          if (response.ok) {
+            document.getElementById('refined-config').value = result.refinedConfig;
+          } else {
+            document.getElementById('refined-config').value = result.error;
+          }
+        } catch (error) {
+          document.getElementById('refined-config').value = 'Error: ' + error.message;
+        }
+      });
+  
+      document.getElementById('copy-btn').addEventListener('click', () => {
+        const refinedConfig = document.getElementById('refined-config');
+        refinedConfig.select();
+        document.execCommand('copy');
+        alert('Config copied to clipboard');
+      });
+    </script>
+  </body>
+  </html>  
   `;
 }
 
