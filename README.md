@@ -9,6 +9,10 @@ Access your configs by handling websocket requests via Cloudflare.
   </h3> 
 </h2>
 
+> [!TIP]
+> * [YouTube Instructions](https://www.youtube.com/watch?v=3Z6h6clnqC4)
+> * New Update!! [Deploy to Cloudflare Pages](./docs/pages_en.md)
+
 [![Version](https://img.shields.io/github/v/release/surfboardv2ray/v2ray-refiner?label=Version&color=blue)](https://github.com/surfboardv2ray/v2ray-refiner/releases/latest)
 [![Download](https://img.shields.io/github/downloads/surfboardv2ray/v2ray-refiner/total?label=Downloads)](https://github.com/surfboardv2ray/v2ray-refiner/releases/latest)
 [![Stars](https://img.shields.io/github/stars/surfboardv2ray/v2ray-refiner?style=flat&label=Stars&color=tomato
