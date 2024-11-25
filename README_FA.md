@@ -11,7 +11,7 @@
 
 > [!TIP]
 > [ویدیو آموزشی یوتوب از V2rayirani](https://www.youtube.com/watch?v=3Z6h6clnqC4)
-<br>
+> <br>
 > آپدیت جدید!! [راهنمای پیاده سازی بر روی Cloudflare Pages](./docs/pages_fa.md)
 
 [![Version](https://img.shields.io/github/v/release/surfboardv2ray/v2ray-refiner?label=Version&color=blue)](https://github.com/surfboardv2ray/v2ray-refiner/releases/latest)
