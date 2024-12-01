@@ -1,6 +1,6 @@
 // Developed by Surfboardv2ray
 // https://github.com/Surfboardv2ray/v2ray-refiner
-// Version 1.2
+// Version 1.2.1
 
 export default {
   async fetch(request) {
@@ -262,14 +262,18 @@ function refineVmess(config, cleanIp, workerHost, allowedPorts) {
     throw new Error('Config must use a Cloudflare TLS Port (443, 8443, 2053, 2083, 2087, or 2096) to proceed');
   }
 
+  // Preserve the original `host` and `sni` values before overwriting
+  const originalHost = decoded.host || ''; // Original host
+  const originalSni = decoded.sni || decoded.host || ''; // Original SNI or fallback to host
+  
   // Set the port to 443 regardless of input config
   decoded.port = 443;
   decoded.add = cleanIp; // Set clean IP for "address"
-  decoded.host = workerHost;
-  decoded.sni = workerHost;
-  const originalHost = decoded.host || ''; // Original host
+  decoded.host = workerHost; // New worker host
+  decoded.sni = workerHost; // New worker SNI
+
   const originalPath = decoded.path || ''; // Original path
-  decoded.path = `/${originalHost}${originalPath}`; // Concatenated path
+  decoded.path = `/${originalSni}${originalPath}`; // Concatenated path with original SNI
 
   const newConfig = 'vmess://' + btoa(unescape(encodeURIComponent(JSON.stringify(decoded))));
   return newConfig;
