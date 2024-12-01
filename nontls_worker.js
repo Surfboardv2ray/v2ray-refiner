@@ -1,6 +1,6 @@
 // Developed by Surfboardv2ray
 // https://github.com/Surfboardv2ray/v2ray-refiner
-// Version 1.2
+// Version 1.2.1
 // Change 'url.port' and 'const workerport' value if your config uses another port. Only one port will work at a time.
 
 export default {
@@ -290,15 +290,13 @@ async function handleConfigRefinement(request) {
   }
 }
 
-// Handle vmess:// config refinement
+
 function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
   console.log("Original config:", config);
   
-  // Extract the base64 part after 'vmess://'
   const base64Part = config.split('vmess://')[1]; 
   console.log("Base64 part:", base64Part);
-
-  // Check if the base64 part is present
+  
   if (!base64Part) {
     throw new Error("Invalid vmess config: No base64 part found.");
   }
@@ -306,14 +304,12 @@ function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
   let decodedConfig;
 
   try {
-    // Decode the base64 part
     decodedConfig = atob(base64Part); 
     console.log("Decoded config:", decodedConfig);
   } catch (e) {
     throw new Error("Invalid vmess config: Base64 decoding failed.");
   }
 
-  // Parse the decoded JSON config
   let jsonConfig;
   try {
     jsonConfig = JSON.parse(decodedConfig);
@@ -322,7 +318,6 @@ function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
     throw new Error("Invalid vmess config: JSON parsing failed.");
   }
 
-  // Validate required fields
   if (!jsonConfig.port || !jsonConfig.ps || !jsonConfig.id) {
     throw new Error("Invalid vmess config: Missing required fields (port, ps, id).");
   }
@@ -330,12 +325,10 @@ function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
   const port = jsonConfig.port.toString();
   console.log("Config port:", port);
   
-  // Check if the port matches the worker port
   if (port !== workerPort) {
     throw new Error(`The config port must be ${workerPort}`);
   }
 
-  // Construct the refined config
   const refinedConfig = {
     v: "2", 
     ps: jsonConfig.ps, 
@@ -346,17 +339,16 @@ function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
     scy: "auto", 
     net: "ws", 
     type: "none", 
-    host: workerUrl, // Set host to the Worker URL
-    path: `/${hostname}${jsonConfig.path || ''}`, // Ensure path is appended correctly
+    host: workerUrl, 
+    path: `/${hostname}${jsonConfig.path || ''}`, 
     tls: "tls", 
-    sni: workerUrl, // Set SNI to the Worker URL
+    sni: workerUrl, 
     alpn: "h2,http/1.1", 
     fp: "chrome" 
   };
 
   console.log("Refined config object:", refinedConfig);
 
-  // Convert refined config to base64
   let refinedConfigBase64;
   try {
     refinedConfigBase64 = btoa(JSON.stringify(refinedConfig));
@@ -365,14 +357,11 @@ function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
     throw new Error("Failed to encode the refined configuration to base64.");
   }
 
-  // Return the refined configuration as a JSON response
   return new Response(JSON.stringify({ refinedConfig: `vmess://${refinedConfigBase64}` }), {
     headers: { 'Content-Type': 'application/json' },
   });
 }
 
-
-// Handle vless:// config refinement
 function handleVlessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
   const parts = config.split('vless://')[1].split('@');
   const uuid = parts[0];
@@ -393,7 +382,6 @@ function handleVlessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
   });
 }
 
-// Handle trojan:// config refinement
 function handleTrojanConfig(config, hostname, cleanIp, workerUrl, workerPort) {
   const parts = config.split('trojan://')[1].split('@');
   const uuid = parts[0];
