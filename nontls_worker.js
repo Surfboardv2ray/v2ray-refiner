@@ -7,38 +7,38 @@ export default {
   async fetch(request) {
     let url = new URL(request.url);
 
-    if (url.pathname === "/" && request.method === "GET") {
+    if (url.pathname === '/' && request.method === 'GET') {
       // Serve the HTML page at the root URL for GET request
       return handleRequest();
-    } else if (url.pathname === "/" && request.method === "POST") {
+    } else if (url.pathname === '/' && request.method === 'POST') {
       // Handle POST request to process the config refinement
       const { config, hostname, cleanIp } = await request.json();
 
       const refinedConfig = refineConfig({ config, hostname, cleanIp }, url);
       return new Response(JSON.stringify({ refinedConfig }), {
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
-    } else if (url.pathname === "/sub" && request.method === "GET") {
-      const hostname = "abc.myvnc.com"; // custom domain
+    } else if (url.pathname === '/sub' && request.method === 'GET') {
+      const hostname = 'abc.myvnc.com'; // custom domain
       const config = `abc`; //your vless, vmess or trojan config.
       const cleanIp4Source =
-        "https://raw.githubusercontent.com/ircfspace/cf2dns/master/list/ipv4.json"; //clean ip4 resource from ircfspace
+        'https://raw.githubusercontent.com/ircfspace/cf2dns/master/list/ipv4.json'; //clean ip4 resource from ircfspace
       const response = await fetch(cleanIp4Source);
       const cleanIps = await response.json();
       const refinedConfigs = cleanIps
         .map((c) => refineConfig({ config, hostname, cleanIp: c.ip }, url))
-        .join("\r\n");
+        .join('\r\n');
       return new Response(refinedConfigs, {
-        headers: { "Content-Type": "text/plain" },
+        headers: { 'Content-Type': 'text/plain' },
       });
     } else {
       // Proceed with the existing fetch logic for other paths
-      let realhostname = url.pathname.split("/")[1];
-      let realpathname = url.pathname.split("/")[2];
+      let realhostname = url.pathname.split('/')[1];
+      let realpathname = url.pathname.split('/')[2];
       url.hostname = realhostname;
-      url.pathname = "/" + realpathname;
+      url.pathname = '/' + realpathname;
       url.port = 8080;
-      url.protocol = "http";
+      url.protocol = 'http';
       let newRequest = new Request(url, request);
       return fetch(newRequest);
     }
@@ -48,10 +48,10 @@ export default {
 async function handleRequest() {
   const html = `
   <!DOCTYPE html>
-  <html lang="en">
+  <html lang='en'>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Non-TLS Config Refiner</title>
     <style>
       /* General Reset */
@@ -98,7 +98,7 @@ async function handleRequest() {
         color: #444;
       }
   
-      input[type="text"], textarea {
+      input[type='text'], textarea {
         width: 100%;
         padding: 12px 16px;
         margin-bottom: 20px;
@@ -109,7 +109,7 @@ async function handleRequest() {
         box-shadow: inset 0 1px 5px rgba(0,0,0,0.1);
       }
   
-      input[type="text"]:focus, textarea:focus {
+      input[type='text']:focus, textarea:focus {
         border-color: #FF8C00;
         outline: none;
         box-shadow: inset 0 1px 5px rgba(255, 140, 0, 0.3);
@@ -181,66 +181,66 @@ async function handleRequest() {
           font-size: 16px;
         }
   
-        input[type="text"], textarea {
+        input[type='text'], textarea {
           font-size: 14px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class='container'>
       <h1>Non-TLS Config Refiner</h1>
-      <form id="config-form">
-        <label for="config">Config (vless, vmess, or trojan):</label>
-        <textarea id="config" rows="6"></textarea>
+      <form id='config-form'>
+        <label for='config'>Config (vless, vmess, or trojan):</label>
+        <textarea id='config' rows='6'></textarea>
   
-        <label for="hostname">Hostname pointing to Server IP:</label>
-        <input type="text" id="hostname" placeholder="Enter your server hostname">
+        <label for='hostname'>Hostname pointing to Server IP:</label>
+        <input type='text' id='hostname' placeholder='Enter your server hostname'>
   
-        <label for="clean-ip">Clean IP:</label>
-        <input type="text" id="clean-ip" value="162.159.141.134" placeholder="Enter Cloudflare clean IP">
+        <label for='clean-ip'>Clean IP:</label>
+        <input type='text' id='clean-ip' value='162.159.141.134' placeholder='Enter Cloudflare clean IP'>
   
-        <button type="submit">Refine Config</button>
-        <div class="error" id="error"></div>
+        <button type='submit'>Refine Config</button>
+        <div class='error' id='error'></div>
       </form>
   
       <h2>Refined Config</h2>
-      <div id="refined-config" class="refined-box"></div>
-      <span id="copy-btn" class="copy-icon">📋 Copy</span>
+      <div id='refined-config' class='refined-box'></div>
+      <span id='copy-btn' class='copy-icon'>📋 Copy</span>
     </div>
   
     <script>
-      document.getElementById("config-form").addEventListener("submit", async function(event) {
+      document.getElementById('config-form').addEventListener('submit', async function(event) {
         event.preventDefault();
-        const config = document.getElementById("config").value;
-        const hostname = document.getElementById("hostname").value;
-        const cleanIp = document.getElementById("clean-ip").value;
+        const config = document.getElementById('config').value;
+        const hostname = document.getElementById('hostname').value;
+        const cleanIp = document.getElementById('clean-ip').value;
   
-        const errorDiv = document.getElementById("error");
-        const refinedConfigDiv = document.getElementById("refined-config");
-        errorDiv.textContent = "";
-        refinedConfigDiv.textContent = "";
+        const errorDiv = document.getElementById('error');
+        const refinedConfigDiv = document.getElementById('refined-config');
+        errorDiv.textContent = '';
+        refinedConfigDiv.textContent = '';
   
         // Input validation
         if (!config && !hostname) {
-          errorDiv.textContent = "Please enter your Config and Hostname";
+          errorDiv.textContent = 'Please enter your Config and Hostname';
           return;
         } else if (!config) {
-          errorDiv.textContent = "Please enter your vmess, vless or trojan config";
+          errorDiv.textContent = 'Please enter your vmess, vless or trojan config';
           return;
         } else if (!hostname) {
-          errorDiv.textContent = "Please enter a hostname pointing to your Server IP Address.";
+          errorDiv.textContent = 'Please enter a hostname pointing to your Server IP Address.';
           return;
         } else if (!cleanIp) {
-          errorDiv.textContent = "Please input your Cloudflare Clean IP address.";
+          errorDiv.textContent = 'Please input your Cloudflare Clean IP address.';
           return;
         }
   
         // Send POST request to the worker for refinement
-        const response = await fetch("/", {
-          method: "POST",
+        const response = await fetch('/', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             config,
@@ -259,13 +259,13 @@ async function handleRequest() {
       });
   
       // Copy to clipboard functionality
-      document.getElementById("copy-btn").addEventListener("click", () => {
-        const refinedConfig = document.getElementById("refined-config").textContent;
+      document.getElementById('copy-btn').addEventListener('click', () => {
+        const refinedConfig = document.getElementById('refined-config').textContent;
         if (refinedConfig) {
           navigator.clipboard.writeText(refinedConfig).then(() => {
-            alert("Config copied to clipboard!");
+            alert('Config copied to clipboard!');
           }).catch(err => {
-            alert("Failed to copy: " + err);
+            alert('Failed to copy: ' + err);
           });
         }
       });
@@ -275,7 +275,7 @@ async function handleRequest() {
   `;
 
   return new Response(html, {
-    headers: { "Content-Type": "text/html" },
+    headers: { 'Content-Type': 'text/html' },
   });
 }
 
@@ -283,11 +283,11 @@ async function handleRequest() {
 function refineConfig(params, url) {
   const { config, hostname, cleanIp } = params;
   const workerUrl = url.hostname;
-  const workerPort = "8080"; // Default port value
+  const workerPort = '8080'; // Default port value
 
   try {
     // Check if the config starts with vmess://, vless://, or trojan://
-    if (config.startsWith("vmess://")) {
+    if (config.startsWith('vmess://')) {
       return handleVmessConfig(
         config,
         hostname,
@@ -295,7 +295,7 @@ function refineConfig(params, url) {
         workerUrl,
         workerPort
       );
-    } else if (config.startsWith("vless://")) {
+    } else if (config.startsWith('vless://')) {
       return handleVlessConfig(
         config,
         hostname,
@@ -303,7 +303,7 @@ function refineConfig(params, url) {
         workerUrl,
         workerPort
       );
-    } else if (config.startsWith("trojan://")) {
+    } else if (config.startsWith('trojan://')) {
       return handleTrojanConfig(
         config,
         hostname,
@@ -314,98 +314,98 @@ function refineConfig(params, url) {
     } else {
       return new Response(
         JSON.stringify({
-          error: "Please enter a valid vmess, vless or trojan config",
+          error: 'Please enter a valid vmess, vless or trojan config',
         }),
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
         }
       );
     }
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
-      headers: { "Content-Type": "application/json" },
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 }
 
 function handleVmessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
-  console.log("Original config:", config);
+  console.log('Original config:', config);
 
-  const base64Part = config.split("vmess://")[1];
-  console.log("Base64 part:", base64Part);
+  const base64Part = config.split('vmess://')[1];
+  console.log('Base64 part:', base64Part);
 
   if (!base64Part) {
-    throw new Error("Invalid vmess config: No base64 part found.");
+    throw new Error('Invalid vmess config: No base64 part found.');
   }
 
   let decodedConfig;
 
   try {
     decodedConfig = atob(base64Part);
-    console.log("Decoded config:", decodedConfig);
+    console.log('Decoded config:', decodedConfig);
   } catch (e) {
-    throw new Error("Invalid vmess config: Base64 decoding failed.");
+    throw new Error('Invalid vmess config: Base64 decoding failed.');
   }
 
   let jsonConfig;
   try {
     jsonConfig = JSON.parse(decodedConfig);
-    console.log("Parsed JSON config:", jsonConfig);
+    console.log('Parsed JSON config:', jsonConfig);
   } catch (e) {
-    throw new Error("Invalid vmess config: JSON parsing failed.");
+    throw new Error('Invalid vmess config: JSON parsing failed.');
   }
 
   if (!jsonConfig.port || !jsonConfig.ps || !jsonConfig.id) {
     throw new Error(
-      "Invalid vmess config: Missing required fields (port, ps, id)."
+      'Invalid vmess config: Missing required fields (port, ps, id).'
     );
   }
 
   const port = jsonConfig.port.toString();
-  console.log("Config port:", port);
+  console.log('Config port:', port);
 
   if (port !== workerPort) {
     throw new Error(`The config port must be ${workerPort}`);
   }
 
   const refinedConfig = {
-    v: "2",
+    v: '2',
     ps: jsonConfig.ps,
     add: cleanIp, // Use Clean IP provided by the user
-    port: "443",
+    port: '443',
     id: jsonConfig.id,
-    aid: "0",
-    scy: "auto",
-    net: "ws",
-    type: "none",
+    aid: '0',
+    scy: 'auto',
+    net: 'ws',
+    type: 'none',
     host: workerUrl,
-    path: `/${hostname}${jsonConfig.path || ""}`,
-    tls: "tls",
+    path: `/${hostname}${jsonConfig.path || ''}`,
+    tls: 'tls',
     sni: workerUrl,
-    alpn: "h2,http/1.1",
-    fp: "chrome",
+    alpn: 'h2,http/1.1',
+    fp: 'chrome',
   };
 
-  console.log("Refined config object:", refinedConfig);
+  console.log('Refined config object:', refinedConfig);
 
   let refinedConfigBase64;
   try {
     refinedConfigBase64 = btoa(JSON.stringify(refinedConfig));
-    console.log("Refined config base64:", refinedConfigBase64);
+    console.log('Refined config base64:', refinedConfigBase64);
   } catch (e) {
-    throw new Error("Failed to encode the refined configuration to base64.");
+    throw new Error('Failed to encode the refined configuration to base64.');
   }
   return `vmess://${refinedConfigBase64}`;
 }
 
 function handleVlessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
-  const parts = config.split("vless://")[1].split("@");
+  const parts = config.split('vless://')[1].split('@');
   const uuid = parts[0];
-  const hostAndPort = parts[1].split("#")[0]; // Get everything before the #
-  const [host, portPath] = hostAndPort.split(":"); // Separate host and port
-  const port = portPath.split("?")[0]; // Get port
-  const path = portPath.split("path=")[1]?.split("&")[0] || ""; // Extract path if it exists
-  const alias = parts[1].split("#")[1]; // Extract the alias after #
+  const hostAndPort = parts[1].split('#')[0]; // Get everything before the #
+  const [host, portPath] = hostAndPort.split(':'); // Separate host and port
+  const port = portPath.split('?')[0]; // Get port
+  const path = portPath.split('path=')[1]?.split('&')[0] || ''; // Extract path if it exists
+  const alias = parts[1].split('#')[1]; // Extract the alias after #
 
   if (port !== workerPort) {
     throw new Error(`The config port must be ${workerPort}`);
@@ -417,13 +417,13 @@ function handleVlessConfig(config, hostname, cleanIp, workerUrl, workerPort) {
 }
 
 function handleTrojanConfig(config, hostname, cleanIp, workerUrl, workerPort) {
-  const parts = config.split("trojan://")[1].split("@");
+  const parts = config.split('trojan://')[1].split('@');
   const uuid = parts[0];
-  const hostAndPort = parts[1].split("#")[0]; // Get everything before the #
-  const [host, portPath] = hostAndPort.split(":"); // Separate host and port
-  const port = portPath.split("?")[0]; // Get port
-  const path = portPath.split("path=")[1]?.split("&")[0] || ""; // Extract path if it exists
-  const alias = parts[1].split("#")[1]; // Extract the alias after #
+  const hostAndPort = parts[1].split('#')[0]; // Get everything before the #
+  const [host, portPath] = hostAndPort.split(':'); // Separate host and port
+  const port = portPath.split('?')[0]; // Get port
+  const path = portPath.split('path=')[1]?.split('&')[0] || ''; // Extract path if it exists
+  const alias = parts[1].split('#')[1]; // Extract the alias after #
 
   if (port !== workerPort) {
     throw new Error(`The config port must be ${workerPort}`);
