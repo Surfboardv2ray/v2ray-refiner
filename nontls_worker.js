@@ -37,7 +37,7 @@ export default {
       let realpathname = url.pathname.split('/')[2];
       url.hostname = realhostname;
       url.pathname = '/' + realpathname;
-      url.port = 8080;
+      url.port = 80;
       url.protocol = 'http';
       let newRequest = new Request(url, request);
       return fetch(newRequest);
@@ -283,7 +283,7 @@ async function handleRequest() {
 function refineConfig(params, url) {
   const { config, hostname, cleanIp } = params;
   const workerUrl = url.hostname;
-  const workerPort = '8080'; // Default port value
+  const workerPort = '80'; // Default port value
 
   try {
     // Check if the config starts with vmess://, vless://, or trojan://
