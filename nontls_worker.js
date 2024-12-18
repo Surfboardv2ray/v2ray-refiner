@@ -19,10 +19,13 @@ export default {
         headers: { 'Content-Type': 'application/json' },
       });
     } else if (url.pathname === '/sub' && request.method === 'GET') {
-      const hostname = 'abc.myvnc.com'; // custom domain
-      const config = `abc`; //your vless, vmess or trojan config.
-      const cleanIp4Source =
-        'https://raw.githubusercontent.com/ircfspace/cf2dns/master/list/ipv4.json'; //clean ip4 resource from ircfspace
+      const hostname = 'abc.myvnc.com'; // your custom domain
+      const config = url.searchParams.get("config"); //your vless, vmess or trojan config from url params
+      if (!config) {
+        return new Response("Invalid Config, please provide it in `config` query param", {
+          headers: { 'Content-Type': 'text/plain' },
+        });
+      }
       const response = await fetch(cleanIp4Source);
       const cleanIps = await response.json();
       const refinedConfigs = cleanIps
@@ -45,6 +48,8 @@ export default {
   },
 };
 
+const cleanIp4Source =
+  'https://raw.githubusercontent.com/ircfspace/cf2dns/master/list/ipv4.json'; //clean ip4 resource from ircfspace
 async function handleRequest() {
   const html = `
   <!DOCTYPE html>
